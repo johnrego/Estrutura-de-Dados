@@ -12,9 +12,6 @@ main.o: main.c
 bst.o: bst.c bst.h
 	$(cc) $(cflags) -c bst.c bst.h
 
-teste.o: teste.c
-	$(cc) $(cflags) -c teste.c
-
 teste: all
 	drmemory -batch -show_reachable bst.exe
 

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include <strings.h>
+#include <string.h>
 #include "bst.h"
 
 bst *novo_no(int id, char *nome){
