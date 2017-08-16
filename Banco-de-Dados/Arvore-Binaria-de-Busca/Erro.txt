@@ -1,0 +1,14 @@
+~~Dr.M~~
+~~Dr.M~~ Error #1: LEAK 14 direct bytes 0x000000000153a690-0x000000000153a69e + 0 indirect bytes
+~~Dr.M~~ # 0 replace_malloc               [d:\drmemory_package\common\alloc_replace.c:2576]
+~~Dr.M~~ # 1 msvcrt.dll!strdup
+~~Dr.M~~ # 2 novo_no                      [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 3 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 4 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 5 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 6 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 7 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 8 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ # 9 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ #10 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
+~~Dr.M~~ #11 insere                       [C:/crossdev/src/mingw-w64-v4-git/mingw-w64-crt/crt/crtexe.c:218]
