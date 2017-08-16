@@ -3,79 +3,58 @@
 #include <limits.h>
 #include "bst.h"
 
-bst *new_node(int value){
-	bst *node = (bst*)malloc(sizeof(bst));
-	(*node).left = NULL;
-	(*node).right = NULL;
-	(*node).value = value;
-	return node;
+bst *novo_no(int id, char *nome){
+	bst *no = (bst*)malloc(sizeof(bst));
+	(*no).esquerdo = NULL;
+	(*no).direito = NULL;
+	(*no).id = id;
+	(*no).nome = nome;
+	return no;
 }
 
-bst *new_tree(int value, bst *left, bst *right){
-	bst *node = new_node(value);
-	(*node).left = left;
-	(*node).right = right;
-	return node;
+bst *insere(bst *no, int id, char *nome){
+	if (no == NULL){
+		return novo_no(id, nome);
+	}
+	if ((*no).id > id){
+		(*no).esquerdo = insere((*no).esquerdo, id, nome);
+	}
+	else {
+		(*no).direito = insere((*no).direito, id, nome);
+	}
+	return no;
 }
 
-void display_tree(bst *node, int level){
-	if (node == NULL){
-		return;
+bst *remove_menor(bst *no){
+	if ((*no).esquerdo == NULL){
+		//Vazamento
+		return (*no).direito;
 	}
-	int i;
-	for (i=0;i<level;i++){
-		printf(" ");
-	}
-	printf("%d\n", (*node).value);
-	display_tree((*node).left, level+1);
-	display_tree((*node).right, level+1);
+	(*no).esquerdo = remove_menor((*no).esquerdo);
+	return no;
 }
 
-void display_leaves(bst *node, int level){
-	if (node == NULL){
-		return;
+bst *remover(bst *no, int id){
+	if (no == NULL){
+		return NULL;
 	}
-	if ((*node).left == NULL && (*node).left == NULL){
-		printf("%d\n", (*node).value);
+	if (id < (*no).id){
+		(*no).esquerdo = remover((*no).esquerdo, id);
+		return no;
 	}
-	display_leaves((*node).left, level+1);
-	display_leaves((*node).right, level+1);
-}
-
-void destroy_tree(bst *node){
-	if (node == NULL){
-		return;
+	if (id > (*no).id){
+		(*no).direito = remover((*no).direito, id);
+		return no;
 	}
-	destroy_tree((*node).left);
-	destroy_tree((*node).right);
-	free(node);
-}
-
-int size(bst *node){
-	if (node == NULL){
-		return 0;
+	if ((*no).esquerdo == NULL){
+		return (*no).direito;
 	}
-	return 1+size((*node).left)+size((*node).right);
-}
-
-int contains(bst *node, int value){
-	if (node == NULL){
-		return 0;
+	if ((*no).direito == NULL){
+		return (*no).esquerdo;
 	}
-	if ((*node).value == value){
-		return 1;
-	}
-	if (value > (*node).value){
-		return contains((*node).right, value);
-	}
-	return contains((*node).left, value);
-}
-
-int max(int n1, int n2){
-	if (n1 > n2){
-		return n1;
-	}
-	return n2;
+	(*no).id = menor_valor((*no).direito);
+	(*no).direito = remove_menor((*no).direito);
+	return no;
 }
 
 int min(int n1, int n2){
@@ -84,31 +63,22 @@ int min(int n1, int n2){
 	}
 	return n2;
 }
-
-int height(bst *node){
-	if (node == NULL){
-		return 0;
-	}
-	return 1+max(height((*node).right),height((*node).left));
-}
-
-int smallest(bst *node){
-	if (node == NULL){
+int menor_valor(bst *no){
+	if (no == NULL){
 		return INT_MAX;
 	}
-	return min(smallest((*node).left),(*node).value);
+	return min(menor_valor((*no).esquerdo),(*no).id);
 }
 
-int biggest(bst *node){
-	if (node == NULL){
-		return INT_MIN;
+bst *encontra(bst *no, int id){
+	if (no == NULL){
+		return no;
 	}
-	return max((*node).value,biggest((*node).right));
-}
-
-int sum(bst *node){
-	if (node == NULL){
-		return 0;
+	if ((*no).id == id){
+		return no;
 	}
-	return (*node).value+sum((*node).left)+sum((*node).right);
+	if (id > (*no).id){
+		return encontra((*no).direito, id);
+	}
+	return encontra((*no).esquerdo, id);
 }

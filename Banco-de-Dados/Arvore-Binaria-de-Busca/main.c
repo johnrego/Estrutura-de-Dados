@@ -26,7 +26,6 @@ int main(int argc, char* argv[]){
 		scanf(" %c", &opt);
 		if(opt == 'q')
 			break;
-
 		switch(opt) {
 			case 'i':
 				scanf("%d", &id);

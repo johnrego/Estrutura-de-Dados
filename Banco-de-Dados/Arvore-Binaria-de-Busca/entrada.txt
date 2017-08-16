@@ -1,0 +1,7 @@
+i 2 john
+i 1 jefferson
+i 3 rego
+v 1
+v 2
+v 3
+q 

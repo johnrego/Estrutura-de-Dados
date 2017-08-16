@@ -12,8 +12,11 @@ main.o: main.c
 bst.o: bst.c bst.h
 	$(cc) $(cflags) -c bst.c bst.h
 
-teste: bst
-	drmemory -batch bst.exe
+teste.o: teste.c
+	$(cc) $(cflags) -c teste.c
+
+teste: teste.o bst.o
+	$(cc) -o teste.exe teste.o bst.o
 
 clean:
 	-del *.gch
