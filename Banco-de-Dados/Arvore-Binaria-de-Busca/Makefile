@@ -15,8 +15,8 @@ bst.o: bst.c bst.h
 teste.o: teste.c
 	$(cc) $(cflags) -c teste.c
 
-teste: teste.o bst.o
-	$(cc) -o teste.exe teste.o bst.o
+teste: all
+	drmemory -batch bst.exe
 
 clean:
 	-del *.gch

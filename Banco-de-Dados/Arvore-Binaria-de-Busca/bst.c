@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <strings.h>
 #include "bst.h"
 
 bst *novo_no(int id, char *nome){
@@ -8,7 +9,7 @@ bst *novo_no(int id, char *nome){
 	(*no).esquerdo = NULL;
 	(*no).direito = NULL;
 	(*no).id = id;
-	(*no).nome = nome;
+	(*no).nome = strdup(nome);
 	return no;
 }
 
@@ -27,7 +28,6 @@ bst *insere(bst *no, int id, char *nome){
 
 bst *remove_menor(bst *no){
 	if ((*no).esquerdo == NULL){
-		//Vazamento
 		return (*no).direito;
 	}
 	(*no).esquerdo = remove_menor((*no).esquerdo);
@@ -81,4 +81,14 @@ bst *encontra(bst *no, int id){
 		return encontra((*no).direito, id);
 	}
 	return encontra((*no).esquerdo, id);
+}
+
+void destroi_arvore(bst *no){
+	if (no == NULL){
+		return;
+	}
+	destroi_arvore((*no).esquerdo);
+	destroi_arvore((*no).direito);
+	free((*no).nome);
+	free(no);
 }

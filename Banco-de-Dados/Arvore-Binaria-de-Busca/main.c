@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "bst.h"
 
-void insert_person(int id, char *name);
+void insert_person(int id, char *nome);
 void remove_person(int id);
 void view_person(int id);
 
-int main(int argc, char* argv[]){
+bst *no = NULL;
+
+int main(){
 	FILE* file = fopen("id_names.txt", "r");
 	int id;
-	char name[256];
+	char nome[256];
 	char opt;
 	if(!file) {
 		printf("Error openning file!\n");
@@ -16,11 +19,11 @@ int main(int argc, char* argv[]){
 	}
 
 	while(fscanf(file, "%d ", &id) != EOF) {
-		fgets(name, sizeof(name), file);
-		printf("%d %s", id, name);
-		insert_person(id, name);
+		fgets(nome, sizeof(nome), file);
+		printf("%d %s", id, nome);
+		insert_person(id, nome);
 	}
-
+	fclose(file);
 	while (1<2){
 		printf("> ");
 		scanf(" %c", &opt);
@@ -29,8 +32,8 @@ int main(int argc, char* argv[]){
 		switch(opt) {
 			case 'i':
 				scanf("%d", &id);
-				fgets(name, sizeof(name), stdin);
-				insert_person(id, name);
+				fgets(nome, sizeof(nome), stdin);
+				insert_person(id, nome);
 			break;
 			case 'r':
 				scanf("%d", &id);
@@ -44,15 +47,24 @@ int main(int argc, char* argv[]){
 			break;
 		}
 	}
-	fclose(file);
+	destroi_arvore(no);
 	return 0;
 }
 
-void insert_person(int id, char *name){
+void insert_person(int id, char *nome){
+	no = insere(no, id, nome);
 }
 
 void remove_person(int id){
+	no = remover(no, id);
 }
 
 void view_person(int id){
+	bst *aux = encontra(no, id);
+	if (aux != NULL){
+		printf("%s", (*aux).nome);
+	}
+	else {
+		printf("Id not found\n");
+	}
 }
