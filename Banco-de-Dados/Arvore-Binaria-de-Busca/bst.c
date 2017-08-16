@@ -29,7 +29,7 @@ bst *insere(bst *no, int id, char *nome){
 bst *remove_menor(bst *no){
 	if ((*no).esquerdo == NULL){
 		bst *aux = (*no).direito;
-		free(no);
+		destroi_no(no);
 		return aux;
 	}
 	(*no).esquerdo = remove_menor((*no).esquerdo);
@@ -50,12 +50,12 @@ bst *remover(bst *no, int id){
 	}
 	if ((*no).esquerdo == NULL){
 		bst *aux = (*no).direito;
-		free(no);
+		destroi_no(no);
 		return aux;
 	}
 	if ((*no).direito == NULL){
 		bst *aux = (*no).esquerdo;
-		free(no);
+		destroi_no(no);
 		return aux;
 	}
 	(*no).id = menor_valor((*no).direito);
@@ -95,6 +95,10 @@ void destroi_arvore(bst *no){
 	}
 	destroi_arvore((*no).esquerdo);
 	destroi_arvore((*no).direito);
+	destroi_no(no);
+}
+
+void destroi_no(bst *no){
 	free((*no).nome);
 	free(no);
 }

@@ -15,4 +15,5 @@ int min(int n1, int n2);
 int menor_valor(bst *no);
 bst *encontra(bst *no, int id);
 void destroi_arvore(bst *no);
+void destroi_no(bst *no);;
 #endif

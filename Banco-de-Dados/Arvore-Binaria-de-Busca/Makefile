@@ -16,7 +16,7 @@ teste.o: teste.c
 	$(cc) $(cflags) -c teste.c
 
 teste: all
-	drmemory -batch bst.exe
+	drmemory -batch -show_reachable bst.exe
 
 clean:
 	-del *.gch
