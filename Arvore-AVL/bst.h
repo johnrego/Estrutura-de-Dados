@@ -11,7 +11,7 @@ typedef struct bst_{
 bst *encontra(bst *no, int id);
 bst *insere(bst *no, int id, char *nome);
 bst *novo_no(int id, char *nome);
-bst *rebalancear(bst *no);
+bst *rebalancea(bst *no);
 bst *remove_menor(bst *no);
 bst *remover(bst *no, int id);
 bst *rot_direito(bst *no);

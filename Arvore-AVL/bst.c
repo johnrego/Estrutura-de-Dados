@@ -24,6 +24,7 @@ bst *insere(bst *no, int id, char *nome){
 		(*no).direito = insere((*no).direito, id, nome);
 	}
 	atualiza_altura(no);
+	no = rebalancea(no);
 	return no;
 }
 
@@ -35,6 +36,7 @@ bst *remove_menor(bst *no){
 	}
 	(*no).esquerdo = remove_menor((*no).esquerdo);
 	atualiza_altura(no);
+	no = rebalancea(no);
 	return no;
 }
 
@@ -45,11 +47,13 @@ bst *remover(bst *no, int id){
 	if (id < (*no).id){
 		(*no).esquerdo = remover((*no).esquerdo, id);
 		atualiza_altura(no);
+		no = rebalancea(no);
 		return no;
 	}
 	if (id > (*no).id){
 		(*no).direito = remover((*no).direito, id);
 		atualiza_altura(no);
+		no = rebalancea(no);
 		return no;
 	}
 	if ((*no).esquerdo == NULL){
@@ -65,6 +69,7 @@ bst *remover(bst *no, int id){
 	(*no).id = menor_valor((*no).direito);
 	(*no).direito = remove_menor((*no).direito);
 	atualiza_altura(no);
+	no = rebalancea(no);
 	return no;
 }
 
@@ -171,7 +176,7 @@ bst *rot_esquerdo(bst *no){
 	return b;
 }
 
-bst *rebalancear(bst *no){
+bst *rebalancea(bst *no){
 	if (no != NULL && (*no).esquerdo != NULL && fator_eq((*no).esquerdo) == 1 && fator_eq(no) == 2){
 		no = rot_direito(no);
 	}

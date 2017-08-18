@@ -13,7 +13,7 @@ bst.o: bst.c bst.h
 	$(cc) $(cflags) -c bst.c bst.h
 
 teste: all
-	drmemory -batch -show_reachable bst.exe
+	drmemory -batch bst.exe
 
 clean:
 	-del *.gch
