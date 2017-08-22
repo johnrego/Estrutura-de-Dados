@@ -53,10 +53,17 @@ int main(){
 
 void insert_person(int id, char *nome){
 	no = insere(no, id, nome);
+	if (!AVL(no)){
+		printf("Arvove nao AVL.\n");
+	}
 }
 
 void remove_person(int id){
 	no = remover(no, id);
+	printf("%d\n", AVL(no));
+	if (!AVL(no)){
+		printf("Arvove nao AVL.\n");
+	}
 }
 
 void view_person(int id){

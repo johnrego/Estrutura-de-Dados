@@ -17,6 +17,7 @@ bst *remover(bst *no, int id);
 bst *rot_direito(bst *no);
 bst *rot_esquerdo(bst *no);
 int altura(bst *no);
+int AVL(bst *no);
 int fator_eq(bst *no);
 int max(int n1, int n2);
 int min(int n1, int n2);

@@ -193,3 +193,22 @@ bst *rebalancea(bst *no){
 	}
 	return no;
 }
+
+int AVL(bst *no){
+	if (no == NULL){
+		return 1;
+	}
+	int altura_esquerdo = 0;
+	if ((*no).esquerdo != NULL){
+		altura_esquerdo = (*(*no).esquerdo).altura;
+	}
+	int altura_direiro = 0;
+	if ((*no).direito != NULL){
+		altura_direiro = (*(*no).direito).altura;
+	}
+	int fe = altura_esquerdo - altura_direiro;
+	if (fe < -1 || fe > 1){
+		return 0;
+	}
+	return AVL((*no).esquerdo) && AVL((*no).direito);
+}
