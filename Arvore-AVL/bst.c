@@ -9,6 +9,7 @@ bst *novo_no(int id, char *nome){
 	(*no).esquerdo = NULL;
 	(*no).direito = NULL;
 	(*no).id = id;
+	(*no).altura = 1;
 	(*no).nome = strdup(nome);
 	return no;
 }
@@ -137,7 +138,7 @@ void atualiza_altura(bst *no){
 
 int fator_eq(bst *no){
 	if (no == NULL){
-		return NULL;
+		return 0;
 	}
 	return altura((*no).esquerdo)-altura((*no).direito);
 }
