@@ -79,5 +79,8 @@ int main(){
 			break;
 		}
 	}
+	for (int i=nv-1;i>-1;i--){
+		free(cidades[i].nome);
+	}
 	return 0;
 }
