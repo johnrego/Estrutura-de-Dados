@@ -1,9 +1,26 @@
-4
-Apodi
+11
 Pau dos Ferros
-Patu
-Martins
-3
+Encanto
+Rafael Fernandes
+Francisco Dantas
+Sao Francisco do oeste
+Marcelino Vieira
+Erere
+Agua Nova
+Riacho de Santana
+Portalegre
+Tabuleiro Grande
+13
 1 2
+1 3
+1 4
+1 5
+1 7
 2 3
-2 4
+2 7
+2 8
+3 6
+3 8
+4 5
+4 10
+5 7
