@@ -3,36 +3,7 @@
 #include <string.h>
 #include "grafo.h"
 
-void a(int num){
-	FILE* file = fopen("mapa.txt", "r");
-	if(!file) {
-		printf("Error openning file!\n");
-		exit(1);
-	}
-	int nv;
-	char name[256];
-	fscanf(file,"%d\n", &nv);
-	grafo cidade[nv];
-	for(int i=0;i<nv;i++){
-		cidade[i].id = i+1;
-		fgets(name, sizeof(name), file);
-		name[strlen(name)-1] = '\0';
-		cidade[i].nome = strdup(name);
-	}
-	int m[nv][nv];
-	for (int i=0;i<nv;i++){
-		for (int j=0;j<nv;j++){
-			m[i][j] = 0;
-		}
-	}
-	int na;
-	fscanf(file,"%d\n", &na);
-	for (int i=0;i<na;i++){
-		int a,b;
-		fscanf(file,"%d %d\n", &a, &b);
-		m[a-1][b-1] = 1;
-	}
-	fclose(file);
+void a(int num, int **m, grafo *cidade, int nv){
 	if (num>nv){
 		printf("id nao existe\n");
 	}
@@ -44,41 +15,9 @@ void a(int num){
 		}
 		printf("\n");
 	}
-	for (int i=nv-1;i>-1;i--){
-		free(cidade[i].nome);
-	}
 }
 
-void d(){
-	FILE* file = fopen("mapa.txt", "r");
-	if(!file) {
-		printf("Error openning file!\n");
-		exit(1);
-	}
-	int nv;
-	char name[256];
-	fscanf(file,"%d\n", &nv);
-	grafo cidade[nv];
-	for(int i=0;i<nv;i++){
-		cidade[i].id = i+1;
-		fgets(name, sizeof(name), file);
-		name[strlen(name)-1] = '\0';
-		cidade[i].nome = strdup(name);
-	}
-	int m[nv][nv];
-	for (int i=0;i<nv;i++){
-		for (int j=0;j<nv;j++){
-			m[i][j] = 0;
-		}
-	}
-	int na;
-	fscanf(file,"%d\n", &na);
-	for (int i=0;i<na;i++){
-		int a,b;
-		fscanf(file,"%d %d\n", &a, &b);
-		m[a-1][b-1] = 1;
-	}
-	fclose(file);
+void d(int **m, grafo *cidade, int nv){
 	printf("digraph {\n");
 	for (int i=0;i<nv;i++){
 		for (int j=0;j<nv;j++){
@@ -88,98 +27,36 @@ void d(){
 		}
 	}
 	printf("}\n");
-	for (int i=nv-1;i>-1;i--){
-		free(cidade[i].nome);
-	}
 }
 
-void l(){
-	FILE* file = fopen("mapa.txt", "r");
-	if(!file) {
-		printf("Error openning file!\n");
-		exit(1);
-	}
-	int nv;
-	char name[256];
-	fscanf(file,"%d\n", &nv);
-	grafo cidade[nv];
-	for(int i=0;i<nv;i++){
-		cidade[i].id = i+1;
-		fgets(name, sizeof(name), file);
-		name[strlen(name)-1] = '\0';
-		cidade[i].nome = strdup(name);
-	}
-	fclose(file);
+void l(grafo *cidade, int nv){
 	for (int i=0;i<nv;i++){
 		printf("%d: %s\n", cidade[i].id, cidade[i].nome);
 	}
-	for (int i=nv-1;i>-1;i--){
-		free(cidade[i].nome);
-	}
 }
 
-void p(int a, int b){
-	FILE* file = fopen("mapa.txt", "r");
-	if(!file) {
-		printf("Error openning file!\n");
-		exit(1);
-	}
-	int nv;
-	fscanf(file,"%d\n", &nv);
-	fclose(file);
+void p(int a, int b, int **m, int nv){
 	for (int i=1;i<=nv;i++){
-		if (bpl(a, b, i)){
+		if (bpl(a, b, i, m, nv)){
 			printf("Caminho encontrado.\n");
 			break;
 		}
 	}
 }
 
-int bpl(int id_a, int id_b, int lim){
+int bpl(int id_a, int id_b, int lim, int **m, int nv){
 	if (lim <= 0){
 		return 0;
 	}
 	if (id_a==id_b){
 		return 1;
 	}
-	FILE* file = fopen("mapa.txt", "r");
-	if(!file) {
-		printf("Error openning file!\n");
-		exit(1);
-	}
-	int nv;
-	char name[256];
-	fscanf(file,"%d\n", &nv);
-	grafo cidade[nv];
-	for(int i=0;i<nv;i++){
-		cidade[i].id = i+1;
-		fgets(name, sizeof(name), file);
-		name[strlen(name)-1] = '\0';
-		cidade[i].nome = strdup(name);
-	}
-	int m[nv][nv];
-	for (int i=0;i<nv;i++){
-		for (int j=0;j<nv;j++){
-			m[i][j] = 0;
-		}
-	}
-	int na;
-	fscanf(file,"%d\n", &na);
-	for (int i=0;i<na;i++){
-		int a,b;
-		fscanf(file,"%d %d\n", &a, &b);
-		m[a-1][b-1] = 1;
-	}
-	fclose(file);
 	for (int i=0;i<nv;i++){
 		if (m[id_a-1][i]>0){
-			if (bpl(i+1, id_b, lim-1)){
+			if (bpl(i+1, id_b, lim-1, m, nv)){
 				return 1;
 			}
 		}
-	}
-	for (int i=nv-1;i>-1;i--){
-		free(cidade[i].nome);
 	}
 	return 0;
 }
