@@ -59,7 +59,7 @@ int main(){
 			break;
 			case 'p':
 				scanf("%d %d", &n1, &n2);
-				p(n1, n2, m, nv);
+				p(n1, n2, m, cidade, nv);
 			break;
 			default:
 			break;
@@ -68,5 +68,9 @@ int main(){
 	for (int i=nv-1;i>-1;i--){
 		free(cidade[i].nome);
 	}
+	for (int i=nv-1;i>-1;i--){
+		free(m[i]);
+	}
+	free(m);
 	return 0;
 }

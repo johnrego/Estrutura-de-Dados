@@ -35,16 +35,17 @@ void l(grafo *cidade, int nv){
 	}
 }
 
-void p(int a, int b, int **m, int nv){
+void p(int a, int b, int **m, grafo *cidade, int nv){
 	for (int i=1;i<=nv;i++){
-		if (bpl(a, b, i, m, nv)){
+		if (bpl(a, b, i, m, cidade, nv)){
+			printf("%s\n", cidade[a-1].nome);
 			printf("Caminho encontrado.\n");
 			break;
 		}
 	}
 }
 
-int bpl(int id_a, int id_b, int lim, int **m, int nv){
+int bpl(int id_a, int id_b, int lim, int **m, grafo *cidade, int nv){
 	if (lim <= 0){
 		return 0;
 	}
@@ -53,7 +54,8 @@ int bpl(int id_a, int id_b, int lim, int **m, int nv){
 	}
 	for (int i=0;i<nv;i++){
 		if (m[id_a-1][i]>0){
-			if (bpl(i+1, id_b, lim-1, m, nv)){
+			if (bpl(i+1, id_b, lim-1, m, cidade, nv)){
+				printf("%s\n", cidade[i].nome);
 				return 1;
 			}
 		}
