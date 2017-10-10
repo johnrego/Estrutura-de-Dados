@@ -71,6 +71,7 @@ int main(){
 	for (int i=nv-1;i>-1;i--){
 		free(m[i]);
 	}
+	free(cidade);
 	free(m);
 	return 0;
 }

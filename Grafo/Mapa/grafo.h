@@ -7,7 +7,7 @@ typedef struct grafo_{
 } grafo;
 
 void a(int num, int **m, grafo *cidade, int nv);
-int bpl(int id_a, int id_b, int lim, int **m, grafo *cidade, int nv);
+int bpl(int id_a, int id_b, int lim, int **m, grafo *cidade, int nv, int *c);
 void d(int **m, grafo *cidade, int nv);
 void l(grafo *cidade, int nv);
 void p(int a, int b, int **m, grafo *cidade, int nv);

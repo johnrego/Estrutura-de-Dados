@@ -16,6 +16,5 @@ teste: all
 	drmemory -batch grafo.exe
 
 clean:
-	-del *.gch
 	-del *.o
 	-del *.exe
