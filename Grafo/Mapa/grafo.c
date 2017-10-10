@@ -43,6 +43,7 @@ void p(int a, int b, int **m, grafo *cidade, int nv){
 			for (int j=i-1;j>-1;j--){
 				printf("%s\n", cidade[c[j]-1].nome);
 			}
+			free(c);
 			break;
 		}
 	}
