@@ -103,6 +103,28 @@ int buscaEndAberto(hash *ha, int mat, aluno *al){
 	return 0;
 }
 
+int remocaoEndAberto(hash *ha, int mat){
+	if (ha==NULL){
+		return 0;
+	}
+	int pos, newPos;
+	pos = chaveDivisao(mat, (*ha).table_size);
+	for (int i=0;i<(*ha).table_size;i++){
+		newPos = sondagemLinear(pos, i, (*ha).table_size);
+		if ((*ha).itens==NULL){
+			return 0;
+		}
+		if ((*(*ha).itens[newPos]).matricula == mat){
+			aluno *novo;
+			novo = (aluno*)malloc(sizeof(aluno));
+			(*ha).itens[newPos]=novo;
+			(*ha).qtd--;
+			return 1;
+		}
+	}
+	return 0;
+}
+
 int sondagemLinear(int pos, int i,int table_size){
 	return ((pos+i)&0x7FFFFFFF)%table_size;
 }

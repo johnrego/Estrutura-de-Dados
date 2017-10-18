@@ -21,6 +21,7 @@ int insereSemColisao(hash *ha, aluno al);
 int buscaSemColisao(hash *ha, int mat, aluno *al);
 int insereEndAberto(hash *ha, aluno al);
 int buscaEndAberto(hash *ha, int mat, aluno *al);
+int remocaoEndAberto(hash *ha, int mat);
 int chaveDivisao(int chave, int table_size);
 int sondagemLinear(int pos, int i,int table_size);
 int sondagemQuadratica(int pos, int i, int table_size);

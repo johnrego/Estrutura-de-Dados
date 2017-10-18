@@ -15,7 +15,18 @@ int main(){
 		}
 	}
 	aluno al1;
-	for (int i=tam;i>-1;i--){
+	for (int i=0;i<tam;i++){
+		if(buscaEndAberto(ha, i, &al1)){
+			printf("%s\n", al1.nome);
+		}
+		else{
+			printf("Nao Encontrado!\n");
+		}
+	}
+	if (!remocaoEndAberto(ha, 1)){
+		printf("Erro na remocao\n");
+	}
+	for (int i=0;i<tam;i++){
 		if(buscaEndAberto(ha, i, &al1)){
 			printf("%s\n", al1.nome);
 		}
